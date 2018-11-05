@@ -4,7 +4,7 @@
 echo "Enter a number between 1 and 3:"
 read VALUE
 
-if [ $VALUE -eq "1" ]; then
+if [ "$VALUE" -eq "1" ] || [ "$VALUE" -eq 2 ] || [ "$VALUE" -eq 3 ] ; then
   echo "You enered $VALUE."
 fi
 
