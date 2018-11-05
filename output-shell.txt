@@ -1,0 +1,257 @@
+List all shel scripts contents of the directory.
+File:  cmdline.sh
+env.sh
+envvariables.sh
+errors.sh
+ex2.sh
+ex3.sh
+ex4.sh
+ex5.sh
+expressions.sh
+forsample.sh
+ifexpression.sh
+nestedif.sh
+readsample.sh
+simpleif.sh
+substitution.sh
+testfile.sh
+test.sh
+varexample.sh - Contents #!/bin/bash
+#Accepting input from command line
+
+echo "The following item was passed in to the script at runtime $1 $2 $3"
+ 
+
+#!/bin/bash
+
+clear
+
+echo "This script will give us environment information"
+echo "================================================"
+echo ""
+echo "Hello Username:  $USER"
+echo ""
+echo "Your Home directory is:  $HOME"
+echo ""
+echo "Your History file will ignore:  $HISTCONTROL"
+echo ""
+echo "Your terminal session type is:  $TERM"
+echo ""
+
+
+#!/bin/bash
+# Display USER, HOME, HISTCONTROL, and TERM environment variables to the screen
+
+echo "The USER environment variable is:  $USER"
+echo "The HOME environment variable is:  $HOME"
+echo "The HISTCONTROL environment variable is:  $HISTCONTROL"
+echo "The TERM environment variable is:  $TERM"
+
+#!/bin/bash
+
+# This is to show exit status types.
+set -e
+
+expr 1 + 5
+echo $?
+
+rm doodles.sh
+echo $?
+
+expr 10 + 10
+echo $? 
+#!/bin/bash
+#Exercise 2 in Linux Academy Bash Scripting training
+
+MYUSERNAME="username"
+MYPASSWORD="password"
+STARTOFSCRIPT=`date`
+echo "The username is:  $MYUSERNAME"
+echo "The password is:  $MYPASSWORD"
+echo "This script started at:  $STARTOFSCRIPT"
+ENDOFSCRIPT=`date`
+echo "This script ended at: $ENDOFSCRIPT"
+
+#!/bin/bash
+#A simple script to demonstrate command substitution
+
+shopt -s expand_aliases
+#enables sub shell aliases
+
+alias TODAY="date"
+alias UFILES="find /home -user user"
+
+TODAYSDATE=`date`
+USERFILES=`find /home -user user`
+
+echo "Today's date:  $TODAYSDATE"
+echo "All files owned by USER:  $USERFILES"
+
+A = `TODAY`
+B = `UFILES`
+#Subsituting above variables for A and B.
+
+echo "With Alias, TODAY IS:  $A"
+echo "With Alias, UFILES IS: $B"
+
+#!/bin/bash
+#Interactive script 
+
+echo "Please enter your first name:  "
+read FIRSTNAME
+
+echo "Please enter your last name:  "
+read LASTNAME
+
+echo "Please enter your age:  "
+read USERAGE
+
+echo ""
+
+echo "Your full name is:  $FIRSTNAME $LASTNAME"
+echo "In 10 years, you will be `expr $USERAGE + 10` years old."
+
+#!/bin/bash
+#Script to list array values
+
+SERVERLIST=("websrv01" "websrv02" "websrv03" "websrv04")
+COUNT=0
+
+for INDEX in ${SERVERLIST[@]}; do
+  echo "Processing server:  ${SERVERLIST[COUNT]}"
+  COUNT="`expr $COUNT+1`"
+done
+
+#!/bin/bash
+#Expression evaluation
+
+expr 2 + 2
+expr 2 + 2 \* 4
+expr \( 2 + 2 \) \* 4
+#!/bin/bash
+# This is a demo of the for loop
+
+echo "List all shel scripts contents of the directory."
+
+SHELLSCRIPTS=`ls *.sh`
+
+#echo "Listing is:  $SHELLSCRIPTS"
+
+for SCRIPT in "$SHELLSCRIPTS"; do 
+  DISPLAY="`cat $SCRIPT`"
+  echo "File:  $SCRIPT - Contents $DISPLAY"
+  echo ""
+done
+
+
+#!/bin/bash
+#Test multiple expressions in single if statement
+
+FILENAME=$1
+
+echo "Testing for file $FILENAME and readability."
+
+if [ -f $FILENAME ] && [ -r $FILENAME ]
+  then
+    echo "File $FILENAME exists AND is readable."
+fi
+
+#!/bin/bash
+# Simple Example of if then else and nested if statements
+
+clear
+
+echo "Enter a number between 1 and 3:"
+read VALUE
+
+if [ "$VALUE" -eq "1" ] 2>/dev/null; then 
+  echo "You entered the #$VALUE."
+elif [ "$VALUE" -eq 2 ] 2>/dev/null; then
+  echo "You successfully entered #2."
+elif [ "$VALUE" -eq 3 ] 2>/dev/null; then
+  echo "You entered the third number."
+else
+  echo "You entered an invalid number!"
+fi
+
+#!/bin/bash
+# Interactive script for user input
+
+echo "Enter your first name:  "
+read FIRSTNAME
+
+echo "Enter your last name:  "
+read LASTNAME
+echo "Your full name is $FIRSTNAME $LASTNAME"
+echo
+echo "Enter your age:  "
+read USERAGE
+echo "In 10 years, you will be:  `expr 10 + $USERAGE` years old."
+
+#!/bin/bash
+#Simple if script for guessing a number.
+
+echo "Guess the secret number"
+echo "======================="
+echo ""
+echo "Enter a Number between 1 and 5:  "
+read GUESS
+
+if [ $GUESS -eq 3 ]
+  then
+    echo "You guessed the correct number!"
+fi
+
+
+#!/bin/bash
+
+#This script is intended to show how to do simple substitution
+
+shopt -s expand_aliases
+
+alias TODAY="date"
+alias UFILES="find /home -user user"
+
+TODAYSDATE=`date`
+USERFILES=`find /home -user user`
+
+echo "Today's date is:  $TODAYSDATE"
+echo "All files owned by User:  $USERFILES"
+
+A=`TODAY`
+B=`UFILES`
+echo "With Alias, TODAY is: $A"
+echo "With Alias, UFILES is:  $B"
+ 
+#!/bin/bash
+#Tests for existence of an indicated file name.
+
+FILENAME=$1
+echo "Testing for the existence of a file called:  $FILENAME"
+
+if [ -a $FILENAME ]
+  then
+    echo "File $FILENAME does exist!"
+fi
+
+
+#! /bin/bash
+
+clear
+
+echo "Hello world!"
+#!/bin/bash
+
+
+MYUSERNAME="username"
+MYPASSWORD="password123"
+STARTOFSCRIPT=`date`
+
+echo "My login name for this application is:  $MYUSERNAME"
+echo "My login password for this application is:  $MYPASSWORD"
+echo "I started this script @:  $STARTOFSCRIPT"
+
+ENDOFSCRIPT=`date`
+
+echo "I ended this script @:  $ENDOFSCRIPT"
+
