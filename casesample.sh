@@ -19,6 +19,7 @@ case $MENUCHOICE in
     echo "Last choice made.";;
   *)
     echo "You chose poorly.";;
+    #Indiana Jones and the Last Crusade.
 esac
 
 
